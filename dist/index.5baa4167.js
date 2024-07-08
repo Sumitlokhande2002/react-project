@@ -35819,7 +35819,7 @@ const Body = ()=>{
         fetchData();
     }, []);
     fetchData = async ()=>{
-        const data = await fetch("https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.19630&lng=72.96750&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.19630&lng=72.96750&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const json = await data.json();
         // console.log(json);
         setListOfRes(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -36068,30 +36068,55 @@ var _user = require("./User");
 var _userDefault = parcelHelpers.interopDefault(_user);
 var _userClass = require("./UserClass");
 var _userClassDefault = parcelHelpers.interopDefault(_userClass);
+var _react = require("react");
+var _s = $RefreshSig$();
 const About = ()=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+    _s();
+    const [name, setName] = (0, _react.useState)("");
+    onchange = (event)=>{
+        setName(event.target.value);
+    };
+    handleSubmit = (event)=>{
+        alert("form submitted" + name);
+        event.preventDefault();
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+        onSubmit: handleSubmit,
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userDefault.default), {
-                name: "Sumit Lokhande"
-            }, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                children: [
+                    "Name",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "text",
+                        value: name,
+                        onChange: onchange
+                    }, void 0, false, {
+                        fileName: "src/components/about.js",
+                        lineNumber: 16,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/about.js",
-                lineNumber: 7,
-                columnNumber: 13
+                lineNumber: 15,
+                columnNumber: 9
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userClassDefault.default), {
-                name: "Sumit Lokhande class"
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                type: "submit",
+                value: "submit"
             }, void 0, false, {
                 fileName: "src/components/about.js",
-                lineNumber: 8,
-                columnNumber: 13
+                lineNumber: 18,
+                columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/about.js",
-        lineNumber: 6,
-        columnNumber: 9
+        lineNumber: 14,
+        columnNumber: 5
     }, undefined);
 };
+_s(About, "JQEeRLI2KF1r0Ucqk3AyGo6OLII=");
 _c = About;
 exports.default = About;
 var _c;
@@ -36102,7 +36127,7 @@ $RefreshReg$(_c, "About");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./User":"4iQHT","./UserClass":"Vp2Fx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4iQHT":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","./User":"4iQHT","./UserClass":"Vp2Fx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"4iQHT":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9c32 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -36398,7 +36423,7 @@ $RefreshReg$(_c, "RestaurantMenu");
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MENU_API", ()=>MENU_API);
-const MENU_API = "https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.19630&lng=72.96750&restaurant&restaurantId=";
+const MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.19630&lng=72.96750&restaurant&restaurantId=";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5OEwS":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$458e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");

@@ -1,1 +1,1 @@
-export const MENU_API="https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.19630&lng=72.96750&restaurant&restaurantId="
+export const MENU_API="https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.19630&lng=72.96750&restaurant&restaurantId="
