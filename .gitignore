@@ -5,3 +5,4 @@ images
 .parcelrc
 .postcssrc
 babel.config.js
+.vercel

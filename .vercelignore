@@ -1,0 +1,5 @@
+node_modules
+large-file-name.ext
+path/to/large/file/or/directory
+tailwind.config.ext
+.parcel-cache

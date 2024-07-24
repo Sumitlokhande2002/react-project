@@ -2,6 +2,7 @@
   import { useState, useEffect } from "react";
   import { Link } from "react-router-dom";
   import useOnlineStatus from "./useOnlineStatus";
+  import { CORS } from "../../utils/constants";
   
 
 
@@ -20,7 +21,7 @@
       
 
       const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.19630&lng=72.96750&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.19630&lng=72.96750&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
       // console.log(json);
@@ -33,8 +34,8 @@
     const PromotedResCard=ResCardWithPromoted(ResCard)
 
     return listOfRes.length == 0 ? (
-      <h3>Loading...</h3>
-    ) : (
+      <h3 className="flex justify-center font-bold">Loading...</h3>
+    ) :  (
       <div className="container">
         <div className="filter flex m-3 p-3">
           <div className=" search ">
@@ -49,7 +50,7 @@
           <button
             className="btn ml-5 px-3 py-1 rounded-lg  bg-green-100 hover:border border-solid border-black"
             onClick={() => {
-              filterList = filterListOfRes.filter((res) => res.info.avgRating>4 );
+              filterList = filterListOfRes.filter((res) => res.info.avgRating>=4.5 );
               setFilterListOfRes(filterList);
             }}>Top Rated restaurant</button>
         </div>

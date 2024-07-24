@@ -1,14 +1,20 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const url = 'http://localhost:1234';
+fetch(url)
+  .then(response => response.text())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
 
-app.use(cors()); // Enable CORS for all routes
 
-// Alternatively, enable CORS for specific routes
-app.get('/data', cors(), (req, res) => {
-  res.json({ message: 'This route has CORS enabled' });
+app.use(cors());
+
+app.get('/', (req, res) => {
+  res.send('Hello, CORS is enabled!');
 });
 
-app.listen(1234, () => {
-  console.log('Server is running on port 1234');
+const PORT = 1234;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

@@ -20,13 +20,12 @@ const Header = () => {
         </div>
         <div className="flex items-center ">
           <ul className="flex p-4 m-4">         
-            <li className="px-4"id="online" >Online Status: <span style={{ color: onlineStatus === false ? "red" : "green" }}className={onlineStatus==false?"offline":"online"}>{onlineStatus==false?"Offline":"Online"}</span></li>
-            <li className="px-4"><Link to="/">Home</Link></li>
-            <li className="px-4"><Link to="/about">About</Link></li>
-            <li className="px-4"><Link to="/contact">Contact</Link></li>
-            {/* <li><Link to="/grocerys">Grocerys</Link></li> */}
-            <li className="px-4 font-bold"><Link to="/cart"> Cart({cartItems.length} items</Link>)</li>
-            <button className="btn px-4" onClick={()=>{btnName=="login"?setBtnName("logout"):setBtnName("login")}}>{btnName}</button>
+            <li className="px-4"id="online" >Online Status: <span style={{ color: onlineStatus === false ? "red" : "green" }}className={onlineStatus==false?"offline":"online"}>{onlineStatus==false?"Offline":"Online"}</span></li>  
+            <li className="px-4 hover:text-purple-700"><Link to="/">Home</Link></li>
+
+                      {/* <li><Link to="/grocerys">Grocerys</Link></li> */}
+            <li className="px-4  hover:text-purple-700"><Link to="/cart"> Cart({cartItems.length} items</Link>)</li>
+            <button className="btn  hover:text-purple-700 px-4 bg-white rounded-md " onClick={()=>{btnName=="login"?setBtnName("logout"):setBtnName("login")}}>{btnName}</button>
           </ul>
         </div>
       </div>

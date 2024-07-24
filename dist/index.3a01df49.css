@@ -385,6 +385,10 @@ img, video {
   align-items: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .justify-between {
   justify-content: space-between;
 }
@@ -399,6 +403,10 @@ img, video {
 
 .rounded-lg {
   border-radius: .5rem;
+}
+
+.rounded-md {
+  border-radius: .375rem;
 }
 
 .rounded-sm {
@@ -552,5 +560,10 @@ img, video {
 
 .hover\:border:hover {
   border-width: 1px;
+}
+
+.hover\:text-purple-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(126 34 206 / var(--tw-text-opacity));
 }
 /*# sourceMappingURL=index.3a01df49.css.map */
