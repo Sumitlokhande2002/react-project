@@ -16,13 +16,14 @@
     useEffect(() => {
       fetchData();
     }, []);
+    const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
+    const targetUrl = 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.19630&lng=72.96750&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING';
 
     fetchData = async () => {
       
+      
 
-      const data = await fetch(
-        "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.19630&lng=72.96750&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      );
+      const data = await fetch(`${proxyUrl}${targetUrl}`);
       const json = await data.json();
       // console.log(json);
       setListOfRes(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);

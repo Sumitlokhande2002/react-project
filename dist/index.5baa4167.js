@@ -604,7 +604,7 @@ window.addEventListener("parcelhmraccept", ()=>{
     ErrorOverlay.dismissRuntimeErrors();
 });
 
-},{"6d18d6bd340e7473":"786KC","74ad5ea14201648c":"1dldy"}],"786KC":[function(require,module,exports) {
+},{"6d18d6bd340e7473":"786KC","74ad5ea14201648c":"7i2ML"}],"786KC":[function(require,module,exports) {
 "use strict";
 module.exports = require("96622d495519d4e");
 
@@ -1068,8 +1068,8 @@ module.exports = require("96622d495519d4e");
     exports.setSignature = setSignature;
 })();
 
-},{}],"1dldy":[function(require,module,exports) {
-var process = require("d1546958eb39fdcf");
+},{}],"7i2ML":[function(require,module,exports) {
+var process = require("e985fd95d100752a");
 !function(e, t) {
     module.exports = t();
 }(window, function() {
@@ -2799,7 +2799,7 @@ var process = require("d1546958eb39fdcf");
     ]);
 });
 
-},{"d1546958eb39fdcf":"d5jf4"}],"d5jf4":[function(require,module,exports) {
+},{"e985fd95d100752a":"d5jf4"}],"d5jf4":[function(require,module,exports) {
 // shim for using process in browser
 var process = module.exports = {};
 // cached from whatever global is present so that test runners that stub it
@@ -3006,7 +3006,7 @@ const Applayout = ()=>{
     }, undefined);
 };
 _c = Applayout;
-appRouter = (0, _reactRouterDom.createBrowserRouter)([
+const appRouter = (0, _reactRouterDom.createBrowserRouter)([
     {
         path: "/",
         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Applayout, {}, void 0, false, {
@@ -27469,7 +27469,7 @@ $RefreshReg$(_c, "Header");
 }
 },{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./useOnlineStatus":"2TcES","react-redux":"62sf7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9xmpe":[function(require,module,exports) {
 /**
- * React Router DOM v6.24.0
+ * React Router DOM v6.25.1
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -28120,6 +28120,11 @@ class Deferred {
         navigator,
         basename
     ]);
+    let routerFuture = _react.useMemo(()=>({
+            v7_relativeSplatPath: router.future.v7_relativeSplatPath
+        }), [
+        router.future.v7_relativeSplatPath
+    ]);
     // The fragment and {null} here are important!  We need them to keep React 18's
     // useId happy when we are server-rendering since we may have a <script> here
     // containing the hydrated server-side staticContext (from StaticRouterProvider).
@@ -28139,15 +28144,15 @@ class Deferred {
         location: state.location,
         navigationType: state.historyAction,
         navigator: navigator,
-        future: {
-            v7_relativeSplatPath: router.future.v7_relativeSplatPath
-        }
-    }, state.initialized || router.future.v7_partialHydration ? /*#__PURE__*/ _react.createElement(DataRoutes, {
+        future: routerFuture
+    }, state.initialized || router.future.v7_partialHydration ? /*#__PURE__*/ _react.createElement(MemoizedDataRoutes, {
         routes: router.routes,
         future: router.future,
         state: state
     }) : fallbackElement))))), null);
 }
+// Memoize to avoid re-renders when updating `ViewTransitionContext`
+const MemoizedDataRoutes = /*#__PURE__*/ _react.memo(DataRoutes);
 function DataRoutes(_ref3) {
     let { routes, future, state } = _ref3;
     return (0, _reactRouter.UNSAFE_useRoutesImpl)(routes, undefined, state, future);
@@ -28488,7 +28493,7 @@ function useDataRouterState(hookName) {
  * A convenient wrapper for reading and writing search parameters via the
  * URLSearchParams interface.
  */ function useSearchParams(defaultInit) {
-    (0, _router.UNSAFE_warning)(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params\n\nIf you're unsure how to load polyfills, we recommend you check out https://polyfill.io/v3/ which provides some recommendations about how to load polyfills only for users that need them, instead of for every user.");
+    (0, _router.UNSAFE_warning)(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params.");
     let defaultSearchParamsRef = _react.useRef(createSearchParams(defaultInit));
     let hasSetSearchParamsRef = _react.useRef(false);
     let location = (0, _reactRouter.useLocation)();
@@ -28898,7 +28903,7 @@ let savedScrollPositions = {};
 
 },{"react":"21dqq","react-dom":"j6uA9","react-router":"dbWyW","@remix-run/router":"5ncDG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dbWyW":[function(require,module,exports) {
 /**
- * React Router v6.24.0
+ * React Router v6.25.1
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -29069,7 +29074,7 @@ RouteErrorContext.displayName = "RouteError";
     !useInRouterContext() && (0, _router.UNSAFE_invariant)(false, // router loaded. We can help them understand how to avoid that.
     "useMatch() may be used only in the context of a <Router> component.");
     let { pathname } = useLocation();
-    return _react.useMemo(()=>(0, _router.matchPath)(pattern, pathname), [
+    return _react.useMemo(()=>(0, _router.matchPath)(pattern, (0, _router.UNSAFE_decodePath)(pathname)), [
         pathname,
         pattern
     ]);
@@ -30166,7 +30171,7 @@ function createMemoryRouter(routes, opts) {
 
 },{"react":"21dqq","@remix-run/router":"5ncDG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5ncDG":[function(require,module,exports) {
 /**
- * @remix-run/router v1.17.0
+ * @remix-run/router v1.18.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -30187,6 +30192,7 @@ parcelHelpers.export(exports, "UNSAFE_DeferredData", ()=>DeferredData);
 parcelHelpers.export(exports, "UNSAFE_ErrorResponseImpl", ()=>ErrorResponseImpl);
 parcelHelpers.export(exports, "UNSAFE_convertRouteMatchToUiMatch", ()=>convertRouteMatchToUiMatch);
 parcelHelpers.export(exports, "UNSAFE_convertRoutesToDataRoutes", ()=>convertRoutesToDataRoutes);
+parcelHelpers.export(exports, "UNSAFE_decodePath", ()=>decodePath);
 parcelHelpers.export(exports, "UNSAFE_getResolveToMatches", ()=>getResolveToMatches);
 parcelHelpers.export(exports, "UNSAFE_invariant", ()=>invariant);
 parcelHelpers.export(exports, "UNSAFE_warning", ()=>warning);
@@ -31039,7 +31045,7 @@ function getResolveToMatches(matches, v7_relativeSplatPath) {
     // When v7_relativeSplatPath is enabled, use the full pathname for the leaf
     // match so we include splat values for "." links.  See:
     // https://github.com/remix-run/react-router/issues/11052#issuecomment-1836589329
-    if (v7_relativeSplatPath) return pathMatches.map((match, idx)=>idx === matches.length - 1 ? match.pathname : match.pathnameBase);
+    if (v7_relativeSplatPath) return pathMatches.map((match, idx)=>idx === pathMatches.length - 1 ? match.pathname : match.pathnameBase);
     return pathMatches.map((match)=>match.pathnameBase);
 }
 /**
@@ -31397,7 +31403,7 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
         v7_partialHydration: false,
         v7_prependBasename: false,
         v7_relativeSplatPath: false,
-        unstable_skipActionErrorRevalidation: false
+        v7_skipActionErrorRevalidation: false
     }, init.future);
     // Cleanup function for history
     let unlistenHistory = null;
@@ -31429,6 +31435,16 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
         initialErrors = {
             [route.id]: error
         };
+    }
+    // In SPA apps, if the user provided a patchRoutesOnMiss implementation and
+    // our initial match is a splat route, clear them out so we run through lazy
+    // discovery on hydration in case there's a more accurate lazy route match.
+    // In SSR apps (with `hydrationData`), we expect that the server will send
+    // up the proper matched routes so we don't want to run lazy discovery on
+    // initial hydration and want to hydrate into the splat route.
+    if (initialMatches && patchRoutesOnMissImpl && !init.hydrationData) {
+        let fogOfWar = checkFogOfWar(initialMatches, dataRoutes, init.history.location.pathname);
+        if (fogOfWar.active) initialMatches = null;
     }
     let initialized;
     if (!initialMatches) {
@@ -31690,6 +31706,7 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
         // Always respect the user flag.  Otherwise don't reset on mutation
         // submission navigations unless they redirect
         let preventScrollReset = pendingPreventScrollReset === true || state.navigation.formMethod != null && isMutationMethod(state.navigation.formMethod) && ((_location$state2 = location.state) == null ? void 0 : _location$state2._isRedirect) !== true;
+        // Commit any in-flight routes at the end of the HMR revalidation "navigation"
         if (inFlightDataRoutes) {
             dataRoutes = inFlightDataRoutes;
             inFlightDataRoutes = undefined;
@@ -31977,11 +31994,11 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
                 shortCircuited: true
             };
             else if (discoverResult.type === "error") {
-                let { error, notFoundMatches, route } = handleDiscoverRouteError(location.pathname, discoverResult);
+                let { boundaryId, error } = handleDiscoverRouteError(location.pathname, discoverResult);
                 return {
-                    matches: notFoundMatches,
+                    matches: discoverResult.partialMatches,
                     pendingActionResult: [
-                        route.id,
+                        boundaryId,
                         {
                             type: ResultType.error,
                             error
@@ -32105,12 +32122,12 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
                 shortCircuited: true
             };
             else if (discoverResult.type === "error") {
-                let { error, notFoundMatches, route } = handleDiscoverRouteError(location.pathname, discoverResult);
+                let { boundaryId, error } = handleDiscoverRouteError(location.pathname, discoverResult);
                 return {
-                    matches: notFoundMatches,
+                    matches: discoverResult.partialMatches,
                     loaderData: {},
                     errors: {
-                        [route.id]: error
+                        [boundaryId]: error
                     }
                 };
             } else if (!discoverResult.matches) {
@@ -32125,7 +32142,7 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
             } else matches = discoverResult.matches;
         }
         let routesToUse = inFlightDataRoutes || dataRoutes;
-        let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, activeSubmission, location, future.v7_partialHydration && initialHydration === true, future.unstable_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionResult);
+        let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, activeSubmission, location, future.v7_partialHydration && initialHydration === true, future.v7_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionResult);
         // Cancel pending deferreds for no-longer-matched routes or routes we're
         // about to reload.  Note that if this is an action reload we would have
         // already cancelled all pending deferreds so this would be a no-op
@@ -32401,7 +32418,7 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
         fetchReloadIds.set(key, loadId);
         let loadFetcher = getLoadingFetcher(submission, actionResult.data);
         state.fetchers.set(key, loadFetcher);
-        let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, submission, nextLocation, false, future.unstable_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, [
+        let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, submission, nextLocation, false, future.v7_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, [
             match.route.id,
             actionResult
         ]);
@@ -32839,18 +32856,13 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
         };
     }
     function handleDiscoverRouteError(pathname, discoverResult) {
-        let matches = discoverResult.partialMatches;
-        let route = matches[matches.length - 1].route;
-        let error = getInternalRouterError(400, {
-            type: "route-discovery",
-            routeId: route.id,
-            pathname,
-            message: discoverResult.error != null && "message" in discoverResult.error ? discoverResult.error : String(discoverResult.error)
-        });
         return {
-            notFoundMatches: matches,
-            route,
-            error
+            boundaryId: findNearestBoundary(discoverResult.partialMatches).route.id,
+            error: getInternalRouterError(400, {
+                type: "route-discovery",
+                pathname,
+                message: discoverResult.error != null && "message" in discoverResult.error ? discoverResult.error : String(discoverResult.error)
+            })
         };
     }
     function cancelActiveDeferreds(predicate) {
@@ -32920,7 +32932,7 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
                 };
             } else {
                 let leafRoute = matches[matches.length - 1].route;
-                if (leafRoute.path === "*") {
+                if (leafRoute.path && (leafRoute.path === "*" || leafRoute.path.endsWith("/*"))) {
                     // If we matched a splat, it might only be because we haven't yet fetched
                     // the children that would match with a higher score, so let's fetch
                     // around and find out
@@ -32941,19 +32953,30 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
         let partialMatches = matches;
         let route = partialMatches.length > 0 ? partialMatches[partialMatches.length - 1].route : null;
         while(true){
+            let isNonHMR = inFlightDataRoutes == null;
+            let routesToUse = inFlightDataRoutes || dataRoutes;
             try {
-                await loadLazyRouteChildren(patchRoutesOnMissImpl, pathname, partialMatches, dataRoutes || inFlightDataRoutes, manifest, mapRouteProperties, pendingPatchRoutes, signal);
+                await loadLazyRouteChildren(patchRoutesOnMissImpl, pathname, partialMatches, routesToUse, manifest, mapRouteProperties, pendingPatchRoutes, signal);
             } catch (e) {
                 return {
                     type: "error",
                     error: e,
                     partialMatches
                 };
+            } finally{
+                // If we are not in the middle of an HMR revalidation and we changed the
+                // routes, provide a new identity so when we `updateState` at the end of
+                // this navigation/fetch `router.routes` will be a new identity and
+                // trigger a re-run of memoized `router.routes` dependencies.
+                // HMR will already update the identity and reflow when it lands
+                // `inFlightDataRoutes` in `completeNavigation`
+                if (isNonHMR) dataRoutes = [
+                    ...dataRoutes
+                ];
             }
             if (signal.aborted) return {
                 type: "aborted"
             };
-            let routesToUse = inFlightDataRoutes || dataRoutes;
             let newMatches = matchRoutes(routesToUse, pathname, basename);
             let matchedSplat = false;
             if (newMatches) {
@@ -32996,6 +33019,22 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
         manifest = {};
         inFlightDataRoutes = convertRoutesToDataRoutes(newRoutes, mapRouteProperties, undefined, manifest);
     }
+    function patchRoutes(routeId, children) {
+        let isNonHMR = inFlightDataRoutes == null;
+        let routesToUse = inFlightDataRoutes || dataRoutes;
+        patchRoutesImpl(routeId, children, routesToUse, manifest, mapRouteProperties);
+        // If we are not in the middle of an HMR revalidation and we changed the
+        // routes, provide a new identity and trigger a reflow via `updateState`
+        // to re-run memoized `router.routes` dependencies.
+        // HMR will already update the identity and reflow when it lands
+        // `inFlightDataRoutes` in `completeNavigation`
+        if (isNonHMR) {
+            dataRoutes = [
+                ...dataRoutes
+            ];
+            updateState({});
+        }
+    }
     router = {
         get basename () {
             return basename;
@@ -33027,9 +33066,7 @@ const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
         dispose,
         getBlocker,
         deleteBlocker,
-        patchRoutes (routeId, children) {
-            return patchRoutes(routeId, children, dataRoutes || inFlightDataRoutes, manifest, mapRouteProperties);
-        },
+        patchRoutes,
         _internalFetchControllers: fetchControllers,
         _internalActiveDeferreds: activeDeferreds,
         // TODO: Remove setRoutes, it's temporary to avoid dealing with
@@ -33613,7 +33650,7 @@ function getMatchesToLoad(history, state, matches, submission, location, isIniti
             nextParams: nextRouteMatch.params
         }, submission, {
             actionResult,
-            unstable_actionStatus: actionStatus,
+            actionStatus,
             defaultShouldRevalidate: shouldSkipRevalidation ? false : // Forced revalidation due to submission, useRevalidator, or X-Remix-Revalidate
             isRevalidationRequired || currentUrl.pathname + currentUrl.search === nextUrl.pathname + nextUrl.search || // Search params affect all loaders
             currentUrl.search !== nextUrl.search || isNewRouteInstance(currentRouteMatch, nextRouteMatch)
@@ -33667,7 +33704,7 @@ function getMatchesToLoad(history, state, matches, submission, location, isIniti
             nextParams: matches[matches.length - 1].params
         }, submission, {
             actionResult,
-            unstable_actionStatus: actionStatus,
+            actionStatus,
             defaultShouldRevalidate: shouldSkipRevalidation ? false : isRevalidationRequired
         }));
         if (shouldRevalidate) revalidatingFetchers.push({
@@ -33709,7 +33746,7 @@ function shouldRevalidateLoader(loaderMatch, arg) {
     return arg.defaultShouldRevalidate;
 }
 /**
- * Idempotent utility to execute route.children() method to lazily load route
+ * Idempotent utility to execute patchRoutesOnMiss() to lazily load route
  * definitions and update the routes/routeManifest
  */ async function loadLazyRouteChildren(patchRoutesOnMissImpl, path, matches, routes, manifest, mapRouteProperties, pendingRouteChildren, signal) {
     let key = [
@@ -33723,7 +33760,7 @@ function shouldRevalidateLoader(loaderMatch, arg) {
                 path,
                 matches,
                 patch: (routeId, children)=>{
-                    if (!signal.aborted) patchRoutes(routeId, children, routes, manifest, mapRouteProperties);
+                    if (!signal.aborted) patchRoutesImpl(routeId, children, routes, manifest, mapRouteProperties);
                 }
             });
             pendingRouteChildren.set(key, pending);
@@ -33733,7 +33770,7 @@ function shouldRevalidateLoader(loaderMatch, arg) {
         pendingRouteChildren.delete(key);
     }
 }
-function patchRoutes(routeId, children, routes, manifest, mapRouteProperties) {
+function patchRoutesImpl(routeId, children, routesToUse, manifest, mapRouteProperties) {
     if (routeId) {
         var _route$children;
         let route = manifest[routeId];
@@ -33748,9 +33785,9 @@ function patchRoutes(routeId, children, routes, manifest, mapRouteProperties) {
     } else {
         let dataChildren = convertRoutesToDataRoutes(children, mapRouteProperties, [
             "patch",
-            String(routes.length || "0")
+            String(routesToUse.length || "0")
         ], manifest);
-        routes.push(...dataChildren);
+        routesToUse.push(...dataChildren);
     }
 }
 /**
@@ -34205,7 +34242,7 @@ function getInternalRouterError(status, _temp5) {
     let errorMessage = "Unknown @remix-run/router error";
     if (status === 400) {
         statusText = "Bad Request";
-        if (type === "route-discovery") errorMessage = 'Unable to match URL "' + pathname + '" - the `children()` function for ' + ("route `" + routeId + "` threw the following error:\n" + message);
+        if (type === "route-discovery") errorMessage = 'Unable to match URL "' + pathname + '" - the `unstable_patchRoutesOnMiss()` ' + ("function threw the following error:\n" + message);
         else if (method && pathname && routeId) errorMessage = "You made a " + method + ' request to "' + pathname + '" but ' + ('did not provide a `loader` for route "' + routeId + '", ') + "so there is no way to handle the request.";
         else if (type === "defer-action") errorMessage = "defer() is not supported in actions";
         else if (type === "invalid-body") errorMessage = "Unable to encode submission body";
@@ -35789,8 +35826,10 @@ const Body = ()=>{
     (0, _react.useEffect)(()=>{
         fetchData();
     }, []);
+    const proxyUrl = "https://thingproxy.freeboard.io/fetch/";
+    const targetUrl = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.19630&lng=72.96750&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
     fetchData = async ()=>{
-        const data = await fetch("https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.19630&lng=72.96750&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch(`${proxyUrl}${targetUrl}`);
         const json = await data.json();
         // console.log(json);
         setListOfRes(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -35801,7 +35840,7 @@ const Body = ()=>{
         children: "No internet Connection"
     }, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 33,
+        lineNumber: 34,
         columnNumber: 35
     }, undefined);
     const PromotedResCard = (0, _resCard.ResCardWithPromoted)((0, _resCardDefault.default));
@@ -35810,7 +35849,7 @@ const Body = ()=>{
         children: "Loading..."
     }, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 37,
+        lineNumber: 38,
         columnNumber: 7
     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "container",
@@ -35830,7 +35869,7 @@ const Body = ()=>{
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 42,
+                                lineNumber: 43,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -35842,13 +35881,13 @@ const Body = ()=>{
                                 children: "Search"
                             }, void 0, false, {
                                 fileName: "src/components/Body.js",
-                                lineNumber: 45,
+                                lineNumber: 46,
                                 columnNumber: 13
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 41,
+                        lineNumber: 42,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -35860,13 +35899,13 @@ const Body = ()=>{
                         children: "Top Rated restaurant"
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 50,
+                        lineNumber: 51,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Body.js",
-                lineNumber: 40,
+                lineNumber: 41,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35877,29 +35916,29 @@ const Body = ()=>{
                             resData: restaurant
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 60,
+                            lineNumber: 61,
                             columnNumber: 42
                         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _resCardDefault.default), {
                             resData: restaurant
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 60,
+                            lineNumber: 61,
                             columnNumber: 85
                         }, undefined)
                     }, restaurant.info.id, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 59,
+                        lineNumber: 60,
                         columnNumber: 13
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 57,
+                lineNumber: 58,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 39,
+        lineNumber: 40,
         columnNumber: 7
     }, undefined);
 };
@@ -36764,10 +36803,7 @@ var __objRest = (source, exclude)=>{
     }
     return target;
 };
-var __publicField = (obj, key, value)=>{
-    __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-    return value;
-};
+var __publicField = (obj, key, value)=>__defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 var createDraftSafeSelectorCreator = (...args)=>{
     const createSelector2 = (0, _reselect.createSelectorCreator)(...args);
     const createDraftSafeSelector2 = Object.assign((...args2)=>{
@@ -36780,7 +36816,7 @@ var createDraftSafeSelectorCreator = (...args)=>{
     });
     return createDraftSafeSelector2;
 };
-var createDraftSafeSelector = createDraftSafeSelectorCreator((0, _reselect.weakMapMemoize));
+var createDraftSafeSelector = /* @__PURE__ */ createDraftSafeSelectorCreator((0, _reselect.weakMapMemoize));
 var composeWithDevTools = typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : function() {
     if (arguments.length === 0) return void 0;
     if (typeof arguments[0] === "object") return 0, _redux.compose;
@@ -37191,7 +37227,6 @@ var buildGetDefaultEnhancers = (middlewareEnhancer)=>function getDefaultEnhancer
         return enhancerArray;
     };
 // src/configureStore.ts
-var IS_PRODUCTION = false;
 function configureStore(options) {
     const getDefaultMiddleware = buildGetDefaultMiddleware();
     const { reducer, middleware, devTools = true, preloadedState, enhancers } = options || {};
@@ -37199,25 +37234,25 @@ function configureStore(options) {
     if (typeof reducer === "function") rootReducer = reducer;
     else if ((0, _redux.isPlainObject)(reducer)) rootReducer = (0, _redux.combineReducers)(reducer);
     else throw new Error("`reducer` is a required argument, and must be a function or an object of functions that can be passed to combineReducers");
-    if (!IS_PRODUCTION && middleware && typeof middleware !== "function") throw new Error("`middleware` field must be a callback");
+    if (middleware && typeof middleware !== "function") throw new Error("`middleware` field must be a callback");
     let finalMiddleware;
     if (typeof middleware === "function") {
         finalMiddleware = middleware(getDefaultMiddleware);
-        if (!IS_PRODUCTION && !Array.isArray(finalMiddleware)) throw new Error("when using a middleware builder function, an array of middleware must be returned");
+        if (!Array.isArray(finalMiddleware)) throw new Error("when using a middleware builder function, an array of middleware must be returned");
     } else finalMiddleware = getDefaultMiddleware();
-    if (!IS_PRODUCTION && finalMiddleware.some((item)=>typeof item !== "function")) throw new Error("each middleware provided to configureStore must be a function");
+    if (finalMiddleware.some((item)=>typeof item !== "function")) throw new Error("each middleware provided to configureStore must be a function");
     let finalCompose = (0, _redux.compose);
     if (devTools) finalCompose = composeWithDevTools(__spreadValues({
         // Enable capture of stack traces for dispatched Redux actions
-        trace: !IS_PRODUCTION
+        trace: true
     }, typeof devTools === "object" && devTools));
     const middlewareEnhancer = (0, _redux.applyMiddleware)(...finalMiddleware);
     const getDefaultEnhancers = buildGetDefaultEnhancers(middlewareEnhancer);
-    if (!IS_PRODUCTION && enhancers && typeof enhancers !== "function") throw new Error("`enhancers` field must be a callback");
+    if (enhancers && typeof enhancers !== "function") throw new Error("`enhancers` field must be a callback");
     let storeEnhancers = typeof enhancers === "function" ? enhancers(getDefaultEnhancers) : getDefaultEnhancers();
-    if (!IS_PRODUCTION && !Array.isArray(storeEnhancers)) throw new Error("`enhancers` callback must return an array");
-    if (!IS_PRODUCTION && storeEnhancers.some((item)=>typeof item !== "function")) throw new Error("each enhancer provided to configureStore must be a function");
-    if (!IS_PRODUCTION && finalMiddleware.length && !storeEnhancers.includes(middlewareEnhancer)) console.error("middlewares were provided, but middleware enhancer was not included in final enhancers - make sure to call `getDefaultEnhancers`");
+    if (!Array.isArray(storeEnhancers)) throw new Error("`enhancers` callback must return an array");
+    if (storeEnhancers.some((item)=>typeof item !== "function")) throw new Error("each enhancer provided to configureStore must be a function");
+    if ((0, finalMiddleware.length) && !storeEnhancers.includes(middlewareEnhancer)) console.error("middlewares were provided, but middleware enhancer was not included in final enhancers - make sure to call `getDefaultEnhancers`");
     const composedEnhancer = finalCompose(...storeEnhancers);
     return (0, _redux.createStore)(rootReducer, preloadedState, composedEnhancer);
 }
@@ -37302,14 +37337,6 @@ function createReducer(initialState, mapOrBuilderCallback) {
     reducer.getInitialState = getInitialState;
     return reducer;
 }
-// src/nanoid.ts
-var urlAlphabet = "ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW";
-var nanoid = (size = 21)=>{
-    let id = "";
-    let i = size;
-    while(i--)id += urlAlphabet[Math.random() * 64 | 0];
-    return id;
-};
 // src/matchers.ts
 var matches = (matcher, action)=>{
     if (hasMatchFunction(matcher)) return matcher.match(action);
@@ -37376,6 +37403,14 @@ function isAsyncThunkAction(...asyncThunks) {
             asyncThunk.fulfilled
         ]));
 }
+// src/nanoid.ts
+var urlAlphabet = "ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW";
+var nanoid = (size = 21)=>{
+    let id = "";
+    let i = size;
+    while(i--)id += urlAlphabet[Math.random() * 64 | 0];
+    return id;
+};
 // src/createAsyncThunk.ts
 var commonProperties = [
     "name",
@@ -38287,7 +38322,7 @@ var getListenerEntryPropsFrom = (options)=>{
         effect
     };
 };
-var createListenerEntry = Object.assign((options)=>{
+var createListenerEntry = /* @__PURE__ */ assign((options)=>{
     const { type, predicate, effect } = getListenerEntryPropsFrom(options);
     const id = nanoid();
     const entry = {
@@ -38324,11 +38359,11 @@ var safelyNotifyError = (errorHandler, errorToNotify, errorInfo)=>{
         }, 0);
     }
 };
-var addListener = Object.assign(createAction(`${alm}/add`), {
+var addListener = /* @__PURE__ */ assign(/* @__PURE__ */ createAction(`${alm}/add`), {
     withTypes: ()=>addListener
 });
-var clearAllListeners = createAction(`${alm}/removeAll`);
-var removeListener = Object.assign(createAction(`${alm}/remove`), {
+var clearAllListeners = /* @__PURE__ */ createAction(`${alm}/removeAll`);
+var removeListener = /* @__PURE__ */ assign(/* @__PURE__ */ createAction(`${alm}/remove`), {
     withTypes: ()=>removeListener
 });
 var defaultErrorHandler = (...args)=>{
@@ -38351,7 +38386,7 @@ var createListenerMiddleware = (middlewareOptions = {})=>{
         if (!entry) entry = createListenerEntry(options);
         return insertEntry(entry);
     };
-    Object.assign(startListening, {
+    assign(startListening, {
         withTypes: ()=>startListening
     });
     const stopListening = (options)=>{
@@ -38366,7 +38401,7 @@ var createListenerMiddleware = (middlewareOptions = {})=>{
         }
         return !!entry;
     };
-    Object.assign(stopListening, {
+    assign(stopListening, {
         withTypes: ()=>stopListening
     });
     const notifyListener = async (entry, action, api, getOriginalState)=>{
@@ -40662,7 +40697,7 @@ var _itemListOther = require("./ItemListOther");
 var _itemListOtherDefault = parcelHelpers.interopDefault(_itemListOther);
 var _react = require("react");
 var _s = $RefreshSig$();
-OtherCategory = _s(({ data })=>{
+const OtherCategory = ({ data })=>{
     _s();
     const [showItems, setShowItems] = (0, _react.useState)(false);
     const handleClick = ()=>{
@@ -40716,8 +40751,12 @@ OtherCategory = _s(({ data })=>{
         lineNumber: 12,
         columnNumber: 9
     }, undefined);
-}, "qs4p7mI6lfD36arOP3cbFTfcWHc=");
+};
+_s(OtherCategory, "qs4p7mI6lfD36arOP3cbFTfcWHc=");
+_c = OtherCategory;
 exports.default = OtherCategory;
+var _c;
+$RefreshReg$(_c, "OtherCategory");
 
   $parcel$ReactRefreshHelpers$9d5d.postlude(module);
 } finally {

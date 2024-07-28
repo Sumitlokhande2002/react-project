@@ -1,7 +1,7 @@
 import ItemListOther from "./ItemListOther";
 import { useState } from "react";
 
-OtherCategory=({data})=>{
+const OtherCategory=({data})=>{
 
     const[showItems,setShowItems]= useState(false)
 

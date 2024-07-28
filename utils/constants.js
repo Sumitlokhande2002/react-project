@@ -1,1 +1,3 @@
-export const MENU_API="https://thingproxy.freeboard.io/fetch/   https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.19630&lng=72.96750&restaurant&restaurantId="
+const proxyUrl = 'https://thingproxy.freeboard.io/fetch/';
+    const targetUrl = 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.19630&lng=72.96750&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING';
+export const MENU_API=`${proxyUrl}${targetUrl}`
